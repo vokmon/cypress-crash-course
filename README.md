@@ -3,6 +3,9 @@ Clash course from https://www.youtube.com/watch?v=avb-VDa3ZG4
 install cypress
 `npm install cypress --save-dev`
 
+install cypress lint
+`npm install eslint-plugin-cypress --save-dev`
+
 open cypress
 `npx cypress open` or `npm run cypress`
 
