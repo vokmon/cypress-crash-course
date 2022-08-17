@@ -35,3 +35,17 @@
 //     }
 //   }
 // }
+
+declare namespace Cypress {
+  interface Chainable<Subject = any> {
+      /**
+       * Custom command to ... add your description here
+       * @example cy.clickOnMyJourneyInCandidateCabinet()
+       */
+       getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;
+  }
+}
+
+Cypress.Commands.add('getByTestId', (testId) => {
+  return cy.get(`[data-cy='${testId}']`);
+})
