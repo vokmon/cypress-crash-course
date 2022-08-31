@@ -16,19 +16,20 @@ function Accomplishment() {
     const [errorMsg, setErrorMsg] = useState("")
 
     const handleSubmit = async () => {
-        if(!title || !accomplishment || !valid) {
+        if (!title || !accomplishment || !valid) {
             setErrorMsg("Complete the items above to continue")
             setShowError(true)
-            return 
+            return
         }
-        
+
         try {
             await axios.post("http://localhost:4000", {
                 title,
                 accomplishment
             });
         } catch (error) {
-            setErrorMsg(error.response.data.msg)
+            // @ts-ignore:next-line
+            setErrorMsg(error?.response?.data?.msg)
             setShowError(true)
             return
         }
@@ -45,24 +46,24 @@ function Accomplishment() {
                 {
                     (!loading && !showSuccess) && (
                         <>
-                            <input 
-                                className="Accomplishment-input" 
-                                placeholder="Title" 
+                            <input
+                                className="Accomplishment-input"
+                                placeholder="Title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 data-cy="accomplishment-title-input"
                             />
-                            <textarea 
-                                className="Accomplishment-textarea" 
-                                placeholder="My accomplishment..." 
+                            <textarea
+                                className="Accomplishment-textarea"
+                                placeholder="My accomplishment..."
                                 value={accomplishment}
                                 onChange={(e) => setAccomplishment(e.target.value)}
                                 data-cy="accomplishment-input"
                             />
                             <div className="Accomplishment-checkbox-container">
-                                <input 
-                                    type="checkbox" 
-                                    checked={valid} 
+                                <input
+                                    type="checkbox"
+                                    checked={valid}
                                     onChange={(e) => setValid(e.target.checked)}
                                     data-cy="accomplishment-checkbox"
                                 />
@@ -90,8 +91,8 @@ function Accomplishment() {
                     (showSuccess) && (
                         <div>
                             <div className="Accomplishment-spinner-container">
-                                <img src={confetti} className="Accomplishment-img"/> 
-                                <h1>This Accomplisment was Successfully Submitted</h1> 
+                                <img src={confetti} className="Accomplishment-img" />
+                                <h1>This Accomplisment was Successfully Submitted</h1>
                             </div>
                             <button className="Accomplishment-btn" onClick={() => {
                                 setShowSuccess(false);
